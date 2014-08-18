@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SWWebImage/SWWebImage/SWWebImageManager.swift"
+            timestampString = "430021478.244258"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "344"
+            endingLineNumber = "344"
+            landmarkName = "store(_:recalculate:imageData:key:toDisk:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SWWebImage.SWImageCache.(store (SWWebImage.SWImageCache) -&gt; (Swift.Optional&lt;ObjectiveC.UIImage&gt;, recalculate : Swift.Bool, imageData : ObjectiveC.NSData, key : Swift.Optional&lt;ObjectiveC.NSString&gt;, toDisk : Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "SWWebImage"
+                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImage/SWWebImage/SWWebImageManager.swift"
+                  timestampString = "430022012.600308"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "6299">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SWWebImage.SWImageCache.(store (SWWebImage.SWImageCache) -&gt; (Swift.Optional&lt;ObjectiveC.UIImage&gt;, recalculate : Swift.Bool, imageData : ObjectiveC.NSData, key : Swift.Optional&lt;ObjectiveC.NSString&gt;, toDisk : Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "SWWebImage"
+                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImage/SWWebImage/SWWebImageManager.swift"
+                  timestampString = "430022012.600558"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "344"
+                  endingLineNumber = "344"
+                  offsetFromSymbolStart = "6369">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

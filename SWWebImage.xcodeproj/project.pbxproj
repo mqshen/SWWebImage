@@ -7,11 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F10229C3199DE446005F8B39 /* SWWebImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10229C2199DE446005F8B39 /* SWWebImageDownloader.swift */; };
+		F1346B6B199CE2B600AB29CC /* SWWebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1346B6A199CE2B600AB29CC /* SWWebImageView.swift */; };
+		F1346B6D199CECC300AB29CC /* SWWebImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1346B6C199CECC300AB29CC /* SWWebImageManager.swift */; };
+		F14A3C4519A0D9D90047E8EC /* SWWebImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14A3C4419A0D9D90047E8EC /* SWWebImageUtil.swift */; };
 		F1560B32199CC8DD00C6744D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1560B31199CC8DD00C6744D /* AppDelegate.swift */; };
 		F1560B34199CC8DD00C6744D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1560B33199CC8DD00C6744D /* ViewController.swift */; };
 		F1560B37199CC8DD00C6744D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1560B35199CC8DD00C6744D /* Main.storyboard */; };
 		F1560B39199CC8DD00C6744D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1560B38199CC8DD00C6744D /* Images.xcassets */; };
 		F1560B45199CC8DD00C6744D /* SWWebImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1560B44199CC8DD00C6744D /* SWWebImageTests.swift */; };
+		F1664ACF199E334D0086483E /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1664ACE199E334D0086483E /* util.swift */; };
+		F174E722199F26DD00174385 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F174E721199F26DD00174385 /* placeholder@2x.png */; };
+		F17BE1FE199DF7380008A949 /* SWWebImageDownloaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17BE1FD199DF7380008A949 /* SWWebImageDownloaderOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,6 +32,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F10229C2199DE446005F8B39 /* SWWebImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageDownloader.swift; sourceTree = "<group>"; };
+		F1346B6A199CE2B600AB29CC /* SWWebImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageView.swift; sourceTree = "<group>"; };
+		F1346B6C199CECC300AB29CC /* SWWebImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageManager.swift; sourceTree = "<group>"; };
+		F14A3C4419A0D9D90047E8EC /* SWWebImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageUtil.swift; sourceTree = "<group>"; };
 		F1560B2C199CC8DD00C6744D /* SWWebImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SWWebImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1560B30199CC8DD00C6744D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1560B31199CC8DD00C6744D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +45,9 @@
 		F1560B3E199CC8DD00C6744D /* SWWebImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWWebImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1560B43199CC8DD00C6744D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1560B44199CC8DD00C6744D /* SWWebImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWebImageTests.swift; sourceTree = "<group>"; };
+		F1664ACE199E334D0086483E /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		F174E721199F26DD00174385 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "placeholder@2x.png"; path = "../../iwowo/iwowo/placeholder@2x.png"; sourceTree = "<group>"; };
+		F17BE1FD199DF7380008A949 /* SWWebImageDownloaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageDownloaderOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +89,8 @@
 		F1560B2E199CC8DD00C6744D /* SWWebImage */ = {
 			isa = PBXGroup;
 			children = (
+				F174E721199F26DD00174385 /* placeholder@2x.png */,
+				F1560B4E199CC90100C6744D /* SWWebImage */,
 				F1560B31199CC8DD00C6744D /* AppDelegate.swift */,
 				F1560B33199CC8DD00C6744D /* ViewController.swift */,
 				F1560B35199CC8DD00C6744D /* Main.storyboard */,
@@ -107,6 +123,19 @@
 				F1560B43199CC8DD00C6744D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1560B4E199CC90100C6744D /* SWWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				F1346B6A199CE2B600AB29CC /* SWWebImageView.swift */,
+				F1346B6C199CECC300AB29CC /* SWWebImageManager.swift */,
+				F10229C2199DE446005F8B39 /* SWWebImageDownloader.swift */,
+				F17BE1FD199DF7380008A949 /* SWWebImageDownloaderOperation.swift */,
+				F1664ACE199E334D0086483E /* util.swift */,
+				F14A3C4419A0D9D90047E8EC /* SWWebImageUtil.swift */,
+			);
+			path = SWWebImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +220,7 @@
 			files = (
 				F1560B37199CC8DD00C6744D /* Main.storyboard in Resources */,
 				F1560B39199CC8DD00C6744D /* Images.xcassets in Resources */,
+				F174E722199F26DD00174385 /* placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,8 +238,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F14A3C4519A0D9D90047E8EC /* SWWebImageUtil.swift in Sources */,
+				F1664ACF199E334D0086483E /* util.swift in Sources */,
+				F1346B6D199CECC300AB29CC /* SWWebImageManager.swift in Sources */,
+				F1346B6B199CE2B600AB29CC /* SWWebImageView.swift in Sources */,
 				F1560B34199CC8DD00C6744D /* ViewController.swift in Sources */,
+				F17BE1FE199DF7380008A949 /* SWWebImageDownloaderOperation.swift in Sources */,
 				F1560B32199CC8DD00C6744D /* AppDelegate.swift in Sources */,
+				F10229C3199DE446005F8B39 /* SWWebImageDownloader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +362,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWWebImage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -337,6 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = SWWebImage/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -395,6 +433,7 @@
 				F1560B4A199CC8DD00C6744D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1560B4B199CC8DD00C6744D /* Build configuration list for PBXNativeTarget "SWWebImageTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +442,7 @@
 				F1560B4D199CC8DD00C6744D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
