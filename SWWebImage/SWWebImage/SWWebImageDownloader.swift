@@ -35,6 +35,7 @@ struct SWWebImageDownloaderOptions : RawOptionSetType {
     static func fromMask(raw: UInt) -> SWWebImageDownloaderOptions { return self(raw) }
     static func convertFromNilLiteral() -> SWWebImageDownloaderOptions { return self(0) }
     
+    static var allZeros: SWWebImageDownloaderOptions { return self(0) }
     static var None: SWWebImageDownloaderOptions          { return self(0) }
     static var LowPriority: SWWebImageDownloaderOptions   { return self(1 << 0) }
     static var ProgressiveDownload: SWWebImageDownloaderOptions  { return self(1 << 1) }

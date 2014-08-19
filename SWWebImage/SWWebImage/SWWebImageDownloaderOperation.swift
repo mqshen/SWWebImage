@@ -187,7 +187,7 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     
     
     func shouldContinueWhenAppEntersBackground() -> Bool {
-        if self.options & SWWebImageDownloaderOptions.ContinueInBackground {
+        if (self.options & SWWebImageDownloaderOptions.ContinueInBackground).boolValue {
             return true
         }
         else {
@@ -279,7 +279,7 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
         if let imageData = self.imageData? {
             imageData.appendData(data)
-            if self.options & SWWebImageDownloaderOptions.ProgressiveDownload && self.expectedSize > 0 {
+            if (self.options & SWWebImageDownloaderOptions.ProgressiveDownload).boolValue && self.expectedSize > 0 {
                 if let completeHandler = self.completeHandler? {
                     let totalSize = imageData.length
                     let imageSource = CGImageSourceCreateIncremental(nil)
@@ -314,12 +314,13 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
                                 partialImageRef = CGBitmapContextCreateImage(bmContext);
                                 
                                 var image = UIImage(CGImage: partialImageRef, scale: 1, orientation: orientation)
-                                let key = SWWebImageManager.sharedManager.cacheKeyForURL(self.request.URL)
-                                let scaledImage = self.scaledImage(key, image: image)
-                                image = decodedImageWithImage(scaledImage)
-                                if let completeHandler = self.completeHandler? {
-                                    dispatch_main_sync_safe {
-                                        completeHandler(image, nil, nil, false)
+                                if let key = SWWebImageManager.sharedManager.cacheKeyForURL(self.request.URL)? {
+                                    let scaledImage = self.scaledImage(key, image: image)
+                                    image = decodedImageWithImage(scaledImage)
+                                    if let completeHandler = self.completeHandler? {
+                                        dispatch_main_sync_safe {
+                                            completeHandler(image, nil, nil, false)
+                                        }
                                     }
                                 }
                             }
@@ -358,27 +359,28 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
             NSNotificationCenter.defaultCenter().postNotificationName(SWWebImageDownloadStopNotification, object: nil)
         }
         
-        if !NSURLCache.sharedURLCache().cachedResponseForRequest(self.request) {
+        if !((NSURLCache.sharedURLCache().cachedResponseForRequest(self.request)) != nil) {
             self.responseFromCached = false
         }
         
         if let completeHandler = self.completeHandler? {
-            if self.options & SWWebImageDownloaderOptions.IgnoreCachedResponse && self.responseFromCached {
+            if (self.options & SWWebImageDownloaderOptions.IgnoreCachedResponse).boolValue && self.responseFromCached {
                 completeHandler(nil, nil, nil, false)
             }
             else {
                 var image = imageWithData(self.imageData!)
-                let key = SWWebImageManager.sharedManager.cacheKeyForURL(self.request.URL)
-                image = scaledImage(key, image: image)
-                if image?.images == nil {
-                    image = decodedImageWithImage(image!)
-                }
-                if (CGSizeEqualToSize(image!.size, CGSizeZero)) {
-                    completeHandler(nil, nil, NSError(domain: "SWWebImageErrorDomain", code: 0,
-                        userInfo: [NSLocalizedDescriptionKey : "Downloaded image has 0 pixels"]), true)
-                }
-                else {
-                    completeHandler(image, self.imageData, nil, true)
+                if let key = SWWebImageManager.sharedManager.cacheKeyForURL(self.request.URL)? {
+                    image = scaledImage(key, image: image)
+                    if image?.images == nil {
+                        image = decodedImageWithImage(image!)
+                    }
+                    if (CGSizeEqualToSize(image!.size, CGSizeZero)) {
+                        completeHandler(nil, nil, NSError(domain: "SWWebImageErrorDomain", code: 0,
+                            userInfo: [NSLocalizedDescriptionKey : "Downloaded image has 0 pixels"]), true)
+                    }
+                    else {
+                        completeHandler(image, self.imageData, nil, true)
+                    }
                 }
             }
         }

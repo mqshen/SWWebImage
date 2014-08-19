@@ -80,7 +80,7 @@ class SWImageCache
         diskCachePath = paths[0].stringByAppendingPathComponent(fullNamespace)
         
         //TODO
-        //self.fileManager = NSFileManager()
+        self.fileManager = NSFileManager()
         
 //        dispatch_sync(ioQueue, {
 //            self.fileManager = NSFileManager()
@@ -88,9 +88,9 @@ class SWImageCache
         let pngPrefix = UnsafePointer<UInt8>([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
         kPNGSignatureData = NSData(bytes: pngPrefix, length: 8)
 
-        dispatch_sync(self.ioQueue) {
-           self.fileManager = NSFileManager.defaultManager()
-        }
+//        dispatch_sync(self.ioQueue) {
+//           self.fileManager = NSFileManager.defaultManager()
+//        }
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "clearMemory",
@@ -147,68 +147,69 @@ class SWImageCache
         
         self.cleanDiskWithCompletionBlock { () -> Void in
             application.endBackgroundTask(bgTask)
-            bgTask = UIBackgroundTaskInvalid;
+            bgTask = UIBackgroundTaskInvalid
         }
     }
     
     func cleanDiskWithCompletionBlock(completeHandler: (() -> Void)?) {
         dispatch_async(self.ioQueue, {
             if let fileManager = self.fileManager? {
-                let diskCacheURL = NSURL.fileURLWithPath(self.diskCachePath, isDirectory: true)
-                let resourceKeys = [NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey]
-                let fileEnumerator = fileManager.enumeratorAtURL(diskCacheURL, includingPropertiesForKeys: resourceKeys,
-                    options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, errorHandler: nil)
-                let expirationDate = NSDate(timeIntervalSinceNow: -self.maxCacheAge)
-                var cacheFiles = [NSURL: AnyObject]()
-                var currentCacheSize: UInt = 0
-                var urlsToDelete = [NSURL]()
+                if let diskCacheURL = NSURL.fileURLWithPath(self.diskCachePath, isDirectory: true)? {
+                    let resourceKeys = [NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey]
+                    let fileEnumerator = fileManager.enumeratorAtURL(diskCacheURL, includingPropertiesForKeys: resourceKeys,
+                        options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, errorHandler: nil)
+                    let expirationDate = NSDate(timeIntervalSinceNow: -self.maxCacheAge)
+                    var cacheFiles = [NSURL: AnyObject]()
+                    var currentCacheSize: UInt = 0
+                    var urlsToDelete = [NSURL]()
                 
-                for fileURL in fileEnumerator.allObjects {
-                    if let fileURL = fileURL as? NSURL {
-                        var resourceValues = fileURL.resourceValuesForKeys(resourceKeys, error: nil)
-                        if (resourceValues != nil) {
-                            let isDir = (resourceValues[NSURLIsDirectoryKey] as NSNumber).boolValue
-                            if isDir {
-                                continue
+                    for fileURL in fileEnumerator.allObjects {
+                        if let fileURL = fileURL as? NSURL {
+                            if var resourceValues = fileURL.resourceValuesForKeys(resourceKeys, error: nil)? {
+                                let isDir = (resourceValues[NSURLIsDirectoryKey] as NSNumber).boolValue
+                                if isDir {
+                                    continue
+                                }
+                                let modificationDate = resourceValues[NSURLContentModificationDateKey] as NSDate
+                                if modificationDate.laterDate(expirationDate).isEqualToDate(expirationDate) {
+                                    urlsToDelete.append(fileURL)
+                                    continue
+                                }
+                                let totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey] as NSNumber
+                                currentCacheSize += totalAllocatedSize
+                                cacheFiles[fileURL] = resourceValues
                             }
-                            let modificationDate = resourceValues[NSURLContentModificationDateKey] as NSDate
-                            if modificationDate.laterDate(expirationDate).isEqualToDate(expirationDate) {
-                                urlsToDelete.append(fileURL)
-                                continue
-                            }
-                            let totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey] as NSNumber
-                            currentCacheSize += totalAllocatedSize
-                            cacheFiles[fileURL] = resourceValues
                         }
                     }
-                }
                 
-                for fileUrl in urlsToDelete {
-                    fileManager.removeItemAtURL(fileUrl, error: nil)
-                }
-                if (currentCacheSize > self.maxCacheSize) {
-                    let desiredCacheSize = self.maxCacheSize / 2
-                    let sortedFiles = cacheFiles.keysSortedByValue({ (value1, value2) -> Bool in
-                        let startDate: NSDate = value1[NSURLContentModificationDateKey] as NSDate
-                        let endDate:NSDate = value2[NSURLContentModificationDateKey] as NSDate
+                    for fileUrl in urlsToDelete {
+                        fileManager.removeItemAtURL(fileUrl, error: nil)
+                    }
+                    if (currentCacheSize > self.maxCacheSize) {
+                        let desiredCacheSize = self.maxCacheSize / 2
+                        let sortedFiles = cacheFiles.keysSortedByValue({ (value1, value2) -> Bool in
+                            let startDate: NSDate = value1[NSURLContentModificationDateKey] as NSDate
+                            let endDate:NSDate = value2[NSURLContentModificationDateKey] as NSDate
                         
-                        return startDate.compare(endDate).toRaw() < 0
-                    })
+                            return startDate.compare(endDate).toRaw() < 0
+                        })
                     
-                    for fileUrl in sortedFiles {
-                        if fileManager.removeItemAtURL(fileUrl, error: nil) {
-                            let resourceValues = cacheFiles[fileUrl] as NSDictionary
-                            let totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey] as NSNumber
-                            currentCacheSize -= totalAllocatedSize
-                            if (currentCacheSize < desiredCacheSize) {
-                                break;
+                        for fileUrl in sortedFiles {
+                            if fileManager.removeItemAtURL(fileUrl, error: nil) {
+                                let resourceValues = cacheFiles[fileUrl] as NSDictionary
+                                let totalAllocatedSize = resourceValues[NSURLTotalFileAllocatedSizeKey] as NSNumber
+                                currentCacheSize -= totalAllocatedSize
+                                if (currentCacheSize < desiredCacheSize) {
+                                    break
+                                }
                             }
                         }
                     }
+                    if let complete = completeHandler? {
+                        dispatch_async(dispatch_get_main_queue(), complete)
+                    }
                 }
-                if let complete = completeHandler? {
-                    dispatch_async(dispatch_get_main_queue(), complete)
-                }
+                
             }
         })
     }
@@ -233,7 +234,7 @@ class SWImageCache
                                 self.memCache.setObject(image, forKey: key, cost: cost)
                             }
                             dispatch_async(dispatch_get_main_queue(), {
-                                done(diskImage, SWImageCacheType.Disk);
+                                done(diskImage, SWImageCacheType.Disk)
                             })
                         }
                     })
@@ -284,16 +285,17 @@ class SWImageCache
     
     func diskImageDataBySearchingAllPaths(key: String) -> NSData? {
         let defaultPath = self.defaultCachePath(key)
-        let data = NSData(contentsOfFile: defaultPath)
-        if data != nil {
+
+        if let data = NSData.dataWithContentsOfFile(defaultPath, options: NSDataReadingOptions.DataReadingUncached, error: nil)? {
             return data
         }
         if let customs = self.customPaths? {
             for path in customs {
                 let filePath = self.cachePath(key, path: path)
-                let imageData = NSData(contentsOfFile: filePath)
-                if imageData != nil {
-                    return imageData;
+                if let imageData = NSData.dataWithContentsOfFile(defaultPath, options: NSDataReadingOptions.DataReadingUncached, error: nil)? {
+                //let imageData = NSData(contentsOfFile: filePath)
+                //if imageData != nil {
+                    return imageData
                 }
             }
         }
@@ -312,27 +314,29 @@ class SWImageCache
     
     
     //- (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk {
-    func store(image: UIImage?, recalculate: Bool, imageData: NSData, key: NSString?, toDisk: Bool) {
+    func store(image: UIImage?, recalculate: Bool, imageData: NSData?, key: NSString?, toDisk: Bool) {
         if (image == nil || key == nil) {
-            return;
+            return
         }
         
         let cost: Int = Int(image!.size.height * image!.size.width * image!.scale)
-        self.memCache.setObject(image, forKey: key, cost: cost)
+        self.memCache.setObject(image!, forKey: key!, cost: cost)
         if toDisk {
             dispatch_async(self.ioQueue, {
                 var data: NSData? = imageData
                 if (recalculate || imageData == nil) {
                     var imageIsPng = true
-                    if (imageData.length >= self.kPNGSignatureData.length) {
-                        imageIsPng = self.ImageDataHasPNGPreffix(imageData)
+                    if let imageData = imageData? {
+                        if (imageData.length >= self.kPNGSignatureData.length) {
+                            imageIsPng = self.ImageDataHasPNGPreffix(imageData)
+                        }
                     }
                     
                     if (imageIsPng) {
-                        data = UIImagePNGRepresentation(image);
+                        data = UIImagePNGRepresentation(image)
                     }
                     else {
-                        data = UIImageJPEGRepresentation(image, 1.0);
+                        data = UIImageJPEGRepresentation(image, 1.0)
                     }
                 }
                 if let data = data? {
@@ -358,10 +362,11 @@ class SWImageCache
                 let fileEnumerator = fileManager.enumeratorAtPath(self.diskCachePath)
                 for fileName in fileEnumerator.allObjects {
                     let filePath = self.diskCachePath.stringByAppendingPathComponent(fileName as String)
-                    let attrs = NSFileManager.defaultManager().attributesOfItemAtPath(filePath, error: nil)
-                    let fileSize: AnyObject? = attrs[NSFileSize]
-                    if let fileSize = (fileSize as? UInt)? {
-                        size += fileSize
+                    if let attrs = NSFileManager.defaultManager().attributesOfItemAtPath(filePath, error: nil) {
+                        let fileSize: AnyObject? = attrs[NSFileSize]
+                        if let fileSize = (fileSize as? UInt)? {
+                            size += fileSize
+                        }
                     }
                 }
             })
@@ -388,7 +393,7 @@ class SWWebImageCombinedOperation: SWWebImageOperation, Equatable
                 if let canceler = newValue? {
                     canceler()
                 }
-                cancelHandler = nil; // don't forget to nil the cancelBlock, otherwise we will get crashes
+                cancelHandler = nil // don't forget to nil the cancelBlock, otherwise we will get crashes
             }
             else {
                 cancelHandler = newValue
@@ -406,11 +411,11 @@ class SWWebImageCombinedOperation: SWWebImageOperation, Equatable
         self.cancelled = true
         if let cacheOp = cacheOperation? {
             cacheOp.cancel()
-            self.cacheOperation = nil;
+            self.cacheOperation = nil
         }
         if let cancel = cancelHandler? {
             cancel()
-            self.cancelHandler = nil;
+            self.cancelHandler = nil
         }
     }
     
@@ -490,7 +495,10 @@ class SWWebImageManager
                     }
                     return
                 }
-                if (image == nil || options & SWWebImageOptions.RefreshCached ) &&
+                if (options & SWWebImageOptions.RefreshCached).boolValue {
+
+                }
+                if (image == nil || (options & SWWebImageOptions.RefreshCached).boolValue ) &&
                     (self.delegate == nil || self.delegate!.shouldDownlodImage(self, imageUrl: url)) {
                         
                         if image != nil && options.toRaw() &  SWWebImageOptions.RefreshCached.toRaw() != 0 {
@@ -500,29 +508,29 @@ class SWWebImageManager
                         }
                         
                         var downloaderOptions = SWWebImageDownloaderOptions.None
-                        if options & SWWebImageOptions.LowPriority {
+                        if (options & SWWebImageOptions.LowPriority).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.LowPriority
                         }
-                        if options & SWWebImageOptions.ProgressiveDownload {
+                        if (options & SWWebImageOptions.ProgressiveDownload).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.ProgressiveDownload
                         }
-                        if options & SWWebImageOptions.RefreshCached {
+                        if (options & SWWebImageOptions.RefreshCached).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.UseNSURLCache
                         }
-                        if options & SWWebImageOptions.ContinueInBackground {
+                        if (options & SWWebImageOptions.ContinueInBackground).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.ContinueInBackground
                         }
-                        if options & SWWebImageOptions.HandleCookies {
+                        if (options & SWWebImageOptions.HandleCookies).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.HandleCookies
                         }
-                        if options & SWWebImageOptions.AllowInvalidSSLCertificates {
+                        if (options & SWWebImageOptions.AllowInvalidSSLCertificates).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.AllowInvalidSSLCertificates
                         }
-                        if options & SWWebImageOptions.HighPriority {
+                        if (options & SWWebImageOptions.HighPriority).boolValue {
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.HighPriority
                         }
                         
-                        if image != nil && options & SWWebImageOptions.RefreshCached {
+                        if image != nil && (options & SWWebImageOptions.RefreshCached).boolValue {
                             downloaderOptions = downloaderOptions & ~SWWebImageDownloaderOptions.ProgressiveDownload
                             downloaderOptions = downloaderOptions | SWWebImageDownloaderOptions.IgnoreCachedResponse
                         }
@@ -585,9 +593,9 @@ class SWWebImageManager
                                     
                                     dispatch_main_sync_safe({
                                         if !operation.cancelled {
-                                            completeHandler(downloadedImage, nil, SWImageCacheType.None, finished, url);
+                                            completeHandler(downloadedImage, nil, SWImageCacheType.None, finished, url)
                                         }
-                                        });
+                                    })
                                 }
                             
                             }
@@ -627,7 +635,7 @@ class SWWebImageManager
             return operation
     }
     
-    func cacheKeyForURL(url: NSURL) -> String {
+    func cacheKeyForURL(url: NSURL) -> String? {
         return url.absoluteString
     }
 }

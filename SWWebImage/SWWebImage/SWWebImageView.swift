@@ -13,7 +13,6 @@ protocol SWWebImageOperation {
     func cancel()
 }
 
-
 struct SWWebImageOptions : RawOptionSetType {
     private var value: UInt = 0
     init(_ value: UInt) { self.value = value }
@@ -23,6 +22,7 @@ struct SWWebImageOptions : RawOptionSetType {
     static func fromMask(raw: UInt) -> SWWebImageOptions { return self(raw) }
     static func convertFromNilLiteral() -> SWWebImageOptions { return self(0) }
     
+    static var allZeros: SWWebImageOptions { return self(0) }
     static var None: SWWebImageOptions          { return self(0) }
     static var RetryFailed: SWWebImageOptions   { return self(1 << 0) }
     static var LowPriority: SWWebImageOptions  { return self(1 << 1) }
@@ -37,6 +37,20 @@ struct SWWebImageOptions : RawOptionSetType {
     static var TransformAnimatedImage: SWWebImageOptions   { return self(1 << 10) }
 }
 func == (lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> Bool     { return lhs.value == rhs.value }
+
+//func &(lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> SWWebImageOptions {
+//    return SWWebImageOptions.fromRaw( lhs.value & rhs.value)!
+//}
+//func |(lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> SWWebImageOptions {
+//    return SWWebImageOptions.fromRaw( lhs.value | rhs.value)!
+//}
+//func ^(lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> SWWebImageOptions {
+//    return SWWebImageOptions.fromRaw( lhs.value ^ rhs.value)!
+//}
+//prefix func ~(lhs: SWWebImageOptions) -> SWWebImageOptions
+//{
+//    return SWWebImageOptions.fromRaw( ~lhs.value )!
+//}
 
 //enum SWWebImageOptions: Int {
 //    case RetryFailed = 1
@@ -62,7 +76,7 @@ class SWWebImageView : UIImageView
     func setImage(url: NSURL, placeholderImage: UIImage, options: SWWebImageOptions = SWWebImageOptions.None, progress: SWWebImageDownloaderProgressHandler? = nil) {
         self.cancelCurrentImageLoad()
         self.url = url
-        if !(options & SWWebImageOptions.DelayPlaceholder) {
+        if !(options & SWWebImageOptions.DelayPlaceholder).boolValue {
             self.image = placeholderImage
         }
         if let url = self.url? {
@@ -75,7 +89,7 @@ class SWWebImageView : UIImageView
                             self.setNeedsLayout()
                         }
                         else {
-                            if (options & SWWebImageOptions.DelayPlaceholder ) {
+                            if (options & SWWebImageOptions.DelayPlaceholder ).boolValue {
                                 self.image = placeholderImage;
                                 self.setNeedsLayout()
                             }
