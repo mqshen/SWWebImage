@@ -30,8 +30,51 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     var imageData: NSMutableData?
     
     //var executing: Bool
-    var myExecuting: Bool
-    var myFinished: Bool
+    var _isExecuting: Bool = false
+    var _isFinished: Bool = false
+    
+    override var executing: Bool {
+        get {
+            return _isExecuting
+        }
+        set {
+            if executing == newValue {
+                return
+            }
+            willChangeValueForKey("isExecuting")
+            self._isExecuting = newValue
+            didChangeValueForKey("isExecuting")
+        }
+    }
+    
+    override var finished: Bool {
+        get {
+            return _isFinished
+        }
+        set {
+            if self._isFinished == newValue {
+                return
+            }
+            willChangeValueForKey("isFinished")
+            self._isFinished = newValue
+            didChangeValueForKey("isFinished")
+        }
+    }
+    
+//    func setExecuting(setExecuting: Bool) {
+//        if executing == setExecuting {return}
+//        willChangeValueForKey("isExecuting")
+//        _isExecuting = setExecuting
+//        didChangeValueForKey("isExecuting")
+//    }
+//    
+//    func setFinished(setFinished: Bool) {
+//        if finished == setFinished {return}
+//        willChangeValueForKey("isFinished")
+//        _isFinished = setFinished
+//        didChangeValueForKey("isFinished")
+//    }
+    
     var expectedSize: Int
     var responseFromCached: Bool
     
@@ -51,8 +94,6 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
             self.progressHandler = progressHandler
             self.completeHandler = completeHandler
             self.cancelHandler = cancelHandler
-            self.myExecuting = false
-            self.myFinished = false
             self.expectedSize = 0
             self.responseFromCached = true
             self.options = SWWebImageDownloaderOptions.ContinueInBackground
@@ -67,7 +108,7 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     override func start() {
         synced(self) {
             if self.cancelled {
-                self.myFinished = true
+                self.finished = true
                 self.reset()
                 return
             }
@@ -81,7 +122,7 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
                 })
             }
             
-            self.myExecuting = true
+            self.executing = true
             self.connection = NSURLConnection(request: self.request, delegate: self, startImmediately: false)
             self.thread = NSThread.currentThread()
         }
@@ -100,13 +141,13 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
                 CFRunLoopRunInMode(kCFRunLoopDefaultMode, 10.0, Boolean(0))
             }
             else {
-                CFRunLoopRun();
+                CFRunLoopRun()
             }
             
             if !self.finished {
                 
             }
-            if !self.myFinished {
+            if !self.finished {
                 connection.cancel()
                 self.connect(self.connection, error: NSError(domain: NSURLErrorDomain , code: NSURLErrorTimedOut, userInfo: [NSURLErrorFailingURLErrorKey: self.request.URL]))
                 
@@ -139,8 +180,8 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     }
     
     func done() {
-        self.myFinished = true
-        self.myExecuting = false
+        self.finished = true
+        self.executing = false
         self.reset()
     }
     
@@ -169,14 +210,14 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     }
     
     func cancelInternalAndStop() {
-        if self.myFinished {
+        if self.finished {
             return
         }
         CFRunLoopStop(CFRunLoopGetCurrent())
     }
     
     func cancelInternal() {
-        if self.myFinished {
+        if self.finished {
             return
         }
         super.cancel()
@@ -187,11 +228,11 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
         if let connection = self.connection? {
             connection.cancel()
             NSNotificationCenter.defaultCenter().postNotificationName(SWWebImageDownloadStopNotification, object: self)
-            if self.myExecuting {
-                self.myExecuting = false
+            if self.executing {
+                self.executing = false
             }
-            if !self.myFinished {
-                self.myFinished = true
+            if !self.finished {
+                self.finished = true
             }
         }
         self.reset()
@@ -220,6 +261,8 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
             }
             statue = httpResponse.statusCode
         }
+        
+        //println(self.request.URL.absoluteURL)
         
         self.connection?.cancel()
         NSNotificationCenter.defaultCenter().postNotificationName(SWWebImageDownloadStopNotification, object: nil)
@@ -305,6 +348,7 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
             return image
         }
     }
+    
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         synced(self) {

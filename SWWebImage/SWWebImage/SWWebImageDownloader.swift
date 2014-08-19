@@ -77,7 +77,7 @@ class URLCallback
 class SWWebImageDownloader
 {
     var maxConcurrentDownloads: Int = 10
-    var downloadTimeout: NSTimeInterval = 60
+    var downloadTimeout: NSTimeInterval = 3
     var currentDownloadCount: Int = 0
     
     let executionOrder: SWWebImageDownloaderExecutionOrder
@@ -125,7 +125,9 @@ class SWWebImageDownloader
             request.HTTPShouldHandleCookies = options.toRaw() & SWWebImageDownloaderOptions.HandleCookies.toRaw() != 0
             request.HTTPShouldUsePipelining = true
             
-            let operation = SWWebImageDownloaderOperation(request: request, options: options, progressHandler: { (receivedSize: Int, expectedSize: Int) -> Void in
+            let operation = SWWebImageDownloaderOperation(request: request,
+                options: options,
+                progressHandler: { (receivedSize: Int, expectedSize: Int) -> Void in
                 if let callbacksForURL = self.callbacksForURL(url)? {
                     for callback in callbacksForURL {
                         if let progressCallback = callback.progressCallback? {
@@ -160,6 +162,7 @@ class SWWebImageDownloader
                 operation.queuePriority = NSOperationQueuePriority.Low
             }
             self.downloadQueue.addOperation(operation)
+            
             if self.executionOrder == SWWebImageDownloaderExecutionOrder.SWWebImageDownloaderLIFOExecutionOrder {
                 self.lastAddedOperation?.addDependency(operation)
                 self.lastAddedOperation = operation

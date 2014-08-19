@@ -284,7 +284,6 @@ class SWImageCache
     
     func diskImageDataBySearchingAllPaths(key: String) -> NSData? {
         let defaultPath = self.defaultCachePath(key)
-        println(defaultPath)
         let data = NSData(contentsOfFile: defaultPath)
         if data != nil {
             return data
@@ -350,6 +349,24 @@ class SWImageCache
     
     func defaultCachePath(key: String ) -> String {
         return self.cachePath(key, path: self.diskCachePath)
+    }
+    
+    func getSize() -> UInt {
+        var size: UInt = 0
+        if let fileManager = self.fileManager? {
+            dispatch_sync(self.ioQueue, {
+                let fileEnumerator = fileManager.enumeratorAtPath(self.diskCachePath)
+                for fileName in fileEnumerator.allObjects {
+                    let filePath = self.diskCachePath.stringByAppendingPathComponent(fileName as String)
+                    let attrs = NSFileManager.defaultManager().attributesOfItemAtPath(filePath, error: nil)
+                    let fileSize: AnyObject? = attrs[NSFileSize]
+                    if let fileSize = (fileSize as? UInt)? {
+                        size += fileSize
+                    }
+                }
+            })
+        }
+        return size
     }
 }
 
