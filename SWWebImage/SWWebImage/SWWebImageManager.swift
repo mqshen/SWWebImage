@@ -10,16 +10,16 @@ import Foundation
 import UIKit
 import ImageIO
 
-enum SWImageCacheType: Int {
+public enum SWImageCacheType: Int {
     case None, Disk, Memory
 }
 
 //var kPNGSignatureData: NSData?
 //let kPNGSignatureBytes = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
 
-typealias SWWebImageCompletionWithFinishedHandler = (UIImage?, NSError?, SWImageCacheType , Bool , NSURL? ) -> Void
+public typealias SWWebImageCompletionWithFinishedHandler = (UIImage?, NSError?, SWImageCacheType , Bool , NSURL? ) -> Void
 
-typealias SDWebImageQueryCompletedHandler = (UIImage?, SWImageCacheType ) -> Void
+public typealias SDWebImageQueryCompletedHandler = (UIImage?, SWImageCacheType ) -> Void
 
 extension Dictionary {
     
@@ -46,7 +46,7 @@ extension Dictionary {
 
 
 
-class SWImageCache
+public class SWImageCache
 {
     var maxMemoryCost: UInt = 0
     var maxCacheSize: UInt = 0
@@ -63,7 +63,7 @@ class SWImageCache
     var customPaths: Array<String>?
     
     
-    class var sharedImageCache: SWImageCache {
+    public class var sharedImageCache: SWImageCache {
         struct Singleton {
             static let instance = SWImageCache()
         }
@@ -80,7 +80,7 @@ class SWImageCache
         diskCachePath = paths[0].stringByAppendingPathComponent(fullNamespace)
         
         //TODO
-        self.fileManager = NSFileManager()
+        //self.fileManager = NSFileManager()
         
 //        dispatch_sync(ioQueue, {
 //            self.fileManager = NSFileManager()
@@ -88,9 +88,9 @@ class SWImageCache
         let pngPrefix = UnsafePointer<UInt8>([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
         kPNGSignatureData = NSData(bytes: pngPrefix, length: 8)
 
-//        dispatch_sync(self.ioQueue) {
-//           self.fileManager = NSFileManager.defaultManager()
-//        }
+        dispatch_sync(self.ioQueue) {
+            self.fileManager = NSFileManager.defaultManager()
+        }
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "clearMemory",
@@ -358,14 +358,17 @@ class SWImageCache
     func getSize() -> UInt {
         var size: UInt = 0
         if let fileManager = self.fileManager? {
+            
             dispatch_sync(self.ioQueue, {
-                let fileEnumerator = fileManager.enumeratorAtPath(self.diskCachePath)
-                for fileName in fileEnumerator.allObjects {
-                    let filePath = self.diskCachePath.stringByAppendingPathComponent(fileName as String)
-                    if let attrs = NSFileManager.defaultManager().attributesOfItemAtPath(filePath, error: nil) {
-                        let fileSize: AnyObject? = attrs[NSFileSize]
-                        if let fileSize = (fileSize as? UInt)? {
-                            size += fileSize
+                if fileManager.fileExistsAtPath(self.diskCachePath) {
+                    let fileEnumerator = fileManager.enumeratorAtPath(self.diskCachePath)
+                    for fileName in fileEnumerator.allObjects {
+                        let filePath = self.diskCachePath.stringByAppendingPathComponent(fileName as String)
+                        if let attrs = NSFileManager.defaultManager().attributesOfItemAtPath(filePath, error: nil) {
+                            let fileSize: AnyObject? = attrs[NSFileSize]
+                            if let fileSize = (fileSize as? UInt)? {
+                                size += fileSize
+                            }
                         }
                     }
                 }
@@ -443,7 +446,7 @@ protocol SWWebImageManagerDelegate
     func transformDownloadedImage(imageManager: SWWebImageManager, image: UIImage?, imageUrl: NSURL) -> UIImage
 }
 
-class SWWebImageManager
+public class SWWebImageManager
 {
     let imageCache: SWImageCache
     let imageDownloader: SWWebImageDownloader
@@ -451,7 +454,7 @@ class SWWebImageManager
     var runningOperations: Array<SWWebImageCombinedOperation>
     var delegate: SWWebImageManagerDelegate?
     
-    class var sharedManager: SWWebImageManager {
+    public class var sharedManager: SWWebImageManager {
         struct Singleton {
             static let instance = SWWebImageManager()
         }
@@ -466,7 +469,7 @@ class SWWebImageManager
     }
     
     
-    func downloadImage(url: NSURL,
+    public func downloadImage(url: NSURL,
         options: SWWebImageOptions,
         progress: SWWebImageDownloaderProgressHandler?,
         completeHandler: SWWebImageCompletionWithFinishedHandler!) -> SWWebImageOperation {

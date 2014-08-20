@@ -14,7 +14,7 @@ class TestTableViewCell: UITableViewCell
 {
     var swImageView: SWWebImageView
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         swImageView = SWWebImageView(frame: CGRectMake(150, 5, 50, 50))
         super.init(coder: aDecoder)
         self.addSubview(swImageView)

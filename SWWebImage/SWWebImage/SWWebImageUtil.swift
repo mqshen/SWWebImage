@@ -138,7 +138,7 @@ func contentTypeForImageData(data: NSData) -> String? {
         case 0x52:
             // R as RIFF for WEBP
             if (data.length < 12) {
-                return nil;
+                return nil
             }
             
             let testString = NSString(data: data.subdataWithRange(NSMakeRange(0, 12)), encoding: NSASCIIStringEncoding)

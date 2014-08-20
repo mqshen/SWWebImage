@@ -1,16 +1,18 @@
 //
-//  SWWebImageTests.swift
-//  SWWebImageTests
+//  SDImageCacheTests.swift
+//  SWWebImage
 //
-//  Created by GoldRatio on 8/14/14.
+//  Created by GoldRatio on 8/20/14.
 //  Copyright (c) 2014 GoldRatio. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import XCTest
+import SWWebImage
 
-class SWWebImageTests: XCTestCase {
-    
+
+class SWImageCacheTests : XCTestCase
+{
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -26,9 +28,9 @@ class SWWebImageTests: XCTestCase {
         XCTAssert(true, "Pass")
     }
     
-    func testPerformanceExample() {
-        self.measureBlock() {
-        }
+    func testSharedImageCache() {
+        // This is an example of a performance test case.
+        let sharedImageCache = SWImageCache.sharedImageCache
+        XCTAssertNotNil(sharedImageCache)
     }
-    
 }

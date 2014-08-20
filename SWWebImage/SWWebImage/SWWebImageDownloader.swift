@@ -59,9 +59,9 @@ func == (lhs: SWWebImageDownloaderOptions, rhs: SWWebImageDownloaderOptions) -> 
 //    case HighPriority = 128
 //}
 
-typealias SWWebImageDownloaderProgressHandler = (Int, Int) -> Void
-typealias SWWebImageDownloaderCompletedHandler = (UIImage?, NSData?, NSError?, Bool) -> Void
-typealias SWWebImageNoParamsHandler = () -> Void
+public typealias SWWebImageDownloaderProgressHandler = (Int, Int) -> Void
+public typealias SWWebImageDownloaderCompletedHandler = (UIImage?, NSData?, NSError?, Bool) -> Void
+public typealias SWWebImageNoParamsHandler = () -> Void
 
 
 class URLCallback

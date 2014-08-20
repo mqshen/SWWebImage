@@ -16,10 +16,12 @@
 		F1560B37199CC8DD00C6744D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1560B35199CC8DD00C6744D /* Main.storyboard */; };
 		F1560B39199CC8DD00C6744D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1560B38199CC8DD00C6744D /* Images.xcassets */; };
 		F1560B45199CC8DD00C6744D /* SWWebImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1560B44199CC8DD00C6744D /* SWWebImageTests.swift */; };
+		F15E09B419A4347B000AD76F /* SWImageCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15E09B319A4347B000AD76F /* SWImageCacheTests.swift */; };
 		F1664ACF199E334D0086483E /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1664ACE199E334D0086483E /* util.swift */; };
 		F17227F519A1FB3400AFC142 /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17227F419A1FB3400AFC142 /* TestTableViewCell.swift */; };
 		F174E722199F26DD00174385 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F174E721199F26DD00174385 /* placeholder@2x.png */; };
 		F17BE1FE199DF7380008A949 /* SWWebImageDownloaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17BE1FD199DF7380008A949 /* SWWebImageDownloaderOperation.swift */; };
+		F1E332ED19A440000032AA50 /* SDWebImageManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E332EC19A440000032AA50 /* SDWebImageManagerTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,10 +48,12 @@
 		F1560B3E199CC8DD00C6744D /* SWWebImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWWebImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1560B43199CC8DD00C6744D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1560B44199CC8DD00C6744D /* SWWebImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWebImageTests.swift; sourceTree = "<group>"; };
+		F15E09B319A4347B000AD76F /* SWImageCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWImageCacheTests.swift; sourceTree = "<group>"; };
 		F1664ACE199E334D0086483E /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		F17227F419A1FB3400AFC142 /* TestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		F174E721199F26DD00174385 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "placeholder@2x.png"; path = "../../iwowo/iwowo/placeholder@2x.png"; sourceTree = "<group>"; };
 		F17BE1FD199DF7380008A949 /* SWWebImageDownloaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageDownloaderOperation.swift; sourceTree = "<group>"; };
+		F1E332EC19A440000032AA50 /* SDWebImageManagerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWebImageManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				F1560B44199CC8DD00C6744D /* SWWebImageTests.swift */,
+				F15E09B319A4347B000AD76F /* SWImageCacheTests.swift */,
+				F1E332EC19A440000032AA50 /* SDWebImageManagerTest.swift */,
 				F1560B42199CC8DD00C6744D /* Supporting Files */,
 			);
 			path = SWWebImageTests;
@@ -258,6 +264,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1560B45199CC8DD00C6744D /* SWWebImageTests.swift in Sources */,
+				F15E09B419A4347B000AD76F /* SWImageCacheTests.swift in Sources */,
+				F1E332ED19A440000032AA50 /* SDWebImageManagerTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

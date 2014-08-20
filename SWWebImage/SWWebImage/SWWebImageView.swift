@@ -9,34 +9,34 @@
 import Foundation
 import UIKit
 
-protocol SWWebImageOperation {
+public protocol SWWebImageOperation {
     func cancel()
 }
 
-struct SWWebImageOptions : RawOptionSetType {
+public struct SWWebImageOptions : RawOptionSetType {
     private var value: UInt = 0
     init(_ value: UInt) { self.value = value }
     var boolValue: Bool { return self.value != 0 }
-    func toRaw() -> UInt { return self.value }
-    static func fromRaw(raw: UInt) -> SWWebImageOptions? { return self(raw) }
-    static func fromMask(raw: UInt) -> SWWebImageOptions { return self(raw) }
-    static func convertFromNilLiteral() -> SWWebImageOptions { return self(0) }
+    public func toRaw() -> UInt { return self.value }
+    public static func fromRaw(raw: UInt) -> SWWebImageOptions? { return self(raw) }
+    public static func fromMask(raw: UInt) -> SWWebImageOptions { return self(raw) }
+    public static func convertFromNilLiteral() -> SWWebImageOptions { return self(0) }
     
-    static var allZeros: SWWebImageOptions { return self(0) }
-    static var None: SWWebImageOptions          { return self(0) }
-    static var RetryFailed: SWWebImageOptions   { return self(1 << 0) }
-    static var LowPriority: SWWebImageOptions  { return self(1 << 1) }
-    static var CacheMemoryOnly: SWWebImageOptions   { return self(1 << 2) }
-    static var ProgressiveDownload: SWWebImageOptions   { return self(1 << 3) }
-    static var RefreshCached: SWWebImageOptions   { return self(1 << 4) }
-    static var ContinueInBackground: SWWebImageOptions   { return self(1 << 5) }
-    static var HandleCookies: SWWebImageOptions   { return self(1 << 6) }
-    static var AllowInvalidSSLCertificates: SWWebImageOptions   { return self(1 << 7) }
-    static var HighPriority: SWWebImageOptions   { return self(1 << 8) }
-    static var DelayPlaceholder: SWWebImageOptions   { return self(1 << 9) }
-    static var TransformAnimatedImage: SWWebImageOptions   { return self(1 << 10) }
+    public static var allZeros: SWWebImageOptions { return self(0) }
+    public static var None: SWWebImageOptions          { return self(0) }
+    public static var RetryFailed: SWWebImageOptions   { return self(1 << 0) }
+    public static var LowPriority: SWWebImageOptions  { return self(1 << 1) }
+    public static var CacheMemoryOnly: SWWebImageOptions   { return self(1 << 2) }
+    public static var ProgressiveDownload: SWWebImageOptions   { return self(1 << 3) }
+    public static var RefreshCached: SWWebImageOptions   { return self(1 << 4) }
+    public static var ContinueInBackground: SWWebImageOptions   { return self(1 << 5) }
+    public static var HandleCookies: SWWebImageOptions   { return self(1 << 6) }
+    public static var AllowInvalidSSLCertificates: SWWebImageOptions   { return self(1 << 7) }
+    public static var HighPriority: SWWebImageOptions   { return self(1 << 8) }
+    public static var DelayPlaceholder: SWWebImageOptions   { return self(1 << 9) }
+    public static var TransformAnimatedImage: SWWebImageOptions   { return self(1 << 10) }
 }
-func == (lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> Bool     { return lhs.value == rhs.value }
+public func == (lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> Bool     { return lhs.value == rhs.value }
 
 //func &(lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> SWWebImageOptions {
 //    return SWWebImageOptions.fromRaw( lhs.value & rhs.value)!

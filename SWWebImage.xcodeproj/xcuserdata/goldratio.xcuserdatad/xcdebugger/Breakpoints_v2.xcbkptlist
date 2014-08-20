@@ -2,4 +2,80 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SWWebImageTests/SDWebImageManagerTest.swift"
+            timestampString = "430196241.204309"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "testThatDownloadInvokesCompletionBlockWithCorrectParamsAsync()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SWWebImage/SWWebImage/SWWebImageManager.swift"
+            timestampString = "430198483.046621"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "365"
+            endingLineNumber = "365">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SWWebImage/SWWebImage/SWWebImageUtil.swift"
+            timestampString = "430198513.008504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SWWebImage.imageOrientationFromImageData (ObjectiveC.NSData) -&gt; C.UIImageOrientation"
+                  moduleName = "SWWebImage"
+                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImage/SWWebImage/SWWebImageUtil.swift"
+                  timestampString = "430198516.91583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SWWebImage.imageOrientationFromImageData (ObjectiveC.NSData) -&gt; C.UIImageOrientation"
+                  moduleName = "SWWebImage"
+                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImage/SWWebImage/SWWebImageUtil.swift"
+                  timestampString = "430198516.916036"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "435">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
