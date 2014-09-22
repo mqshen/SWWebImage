@@ -68,7 +68,7 @@ public func == (lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> Bool     { re
 
 class SWWebImageView : UIImageView
 {
-    let operations = Dictionary<String, Array<SWWebImageOperation>>()
+    var operations = Dictionary<String, SWWebImageOperation>()
     
     var url: NSURL?
     
@@ -80,7 +80,7 @@ class SWWebImageView : UIImageView
             self.image = placeholderImage
         }
         if let url = self.url? {
-            SWWebImageManager.sharedManager.downloadImage(url, options: options,
+            let operation = SWWebImageManager.sharedManager.downloadImage(url, options: options,
                 progress: progress,
                 completeHandler: {(image: UIImage?, error: NSError?, cacheType: SWImageCacheType , finished: Bool , imageUrl: NSURL? ) -> Void in
                     dispatch_main_sync_safe({ () -> () in
@@ -96,6 +96,8 @@ class SWWebImageView : UIImageView
                         }
                     })
                 })
+            self.operations["UIImageViewImageLoad"] = operation
+            //[self sd_setImageLoadOperation:operation forKey:@"UIImageViewImageLoad"];
         }
         else {
             println("url must not be nil")
@@ -108,11 +110,8 @@ class SWWebImageView : UIImageView
     }
     
     func cancelImageLoadOperationWithKey(key: String) {
-        let operations = self.operations[key]
-        if let operations = operations? {
-            for operation in operations {
-                operation.cancel()
-            }
+        if let op = self.operations[key]? {
+            op.cancel()
         }
     }
 }
