@@ -61,19 +61,19 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
         }
     }
     
-//    func setExecuting(setExecuting: Bool) {
-//        if executing == setExecuting {return}
-//        willChangeValueForKey("isExecuting")
-//        _isExecuting = setExecuting
-//        didChangeValueForKey("isExecuting")
-//    }
-//    
-//    func setFinished(setFinished: Bool) {
-//        if finished == setFinished {return}
-//        willChangeValueForKey("isFinished")
-//        _isFinished = setFinished
-//        didChangeValueForKey("isFinished")
-//    }
+    //    func setExecuting(setExecuting: Bool) {
+    //        if executing == setExecuting {return}
+    //        willChangeValueForKey("isExecuting")
+    //        _isExecuting = setExecuting
+    //        didChangeValueForKey("isExecuting")
+    //    }
+    //
+    //    func setFinished(setFinished: Bool) {
+    //        if finished == setFinished {return}
+    //        willChangeValueForKey("isFinished")
+    //        _isFinished = setFinished
+    //        didChangeValueForKey("isFinished")
+    //    }
     
     var expectedSize: Int
     var responseFromCached: Bool
@@ -338,9 +338,9 @@ class SWWebImageDownloaderOperation : NSOperation, SWWebImageOperation, NSURLCon
     }
     
     func scaledImage(key: String, image: UIImage!) -> UIImage {
-        if image.images != nil && image.images.count > 0 {
+        if image.images != nil && image.images!.count > 0 {
             var scaledImages = [UIImage]()
-            for tempImage in image.images {
+            for tempImage in image.images! {
                 scaledImages.append(self.scaledImage(key, image: tempImage as? UIImage))
             }
             return UIImage.animatedImageWithImages(scaledImages, duration: image.duration)

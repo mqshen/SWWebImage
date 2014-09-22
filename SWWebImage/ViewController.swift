@@ -355,24 +355,24 @@ class ViewController: UITableViewController {
     }
     
 
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.objects.count
     }
     
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell") as? TestTableViewCell
         if cell == nil {
             cell = TestTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
         }
-        cell?.textLabel.text = "Image \(indexPath.row)"
+        cell?.textLabel?.text = "Image \(indexPath.row)"
         cell?.swImageView.setImage(NSURL(string: self.objects[indexPath.row]), placeholderImage: UIImage(named: "placeholder@2x.png"), options: SWWebImageOptions.None, progress: nil)
-        return cell;
+        return cell!
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     }
     
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60
     }
 }

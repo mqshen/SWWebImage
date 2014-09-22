@@ -26,7 +26,6 @@ class SDWebImageManagerTest: XCTestCase
     func testThatDownloadInvokesCompletionBlockWithCorrectParamsAsync() {
         let originalImageURL = NSURL(string: "http://static2.dmcdn.net/static/video/656/177/44771656:jpeg_preview_small.jpg?20120509154705")
         
-        
         let readyExpectation = expectationWithDescription("ready")
         
         SWWebImageManager.sharedManager.downloadImage(originalImageURL, options: SWWebImageOptions.None, progress: nil,

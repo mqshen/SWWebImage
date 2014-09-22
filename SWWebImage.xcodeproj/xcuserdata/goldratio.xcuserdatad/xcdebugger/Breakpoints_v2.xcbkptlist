@@ -6,52 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SWWebImageTests/SDWebImageManagerTest.swift"
-            timestampString = "430202785.56669"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "testThatDownloadInvokesCompletionBlockWithCorrectParamsAsync()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SWWebImageTests.SDWebImageManagerTest.(testThatDownloadInvokesCompletionBlockWithCorrectParamsAsync (SWWebImageTests.SDWebImageManagerTest) -&gt; () -&gt; ()).(closure #1)"
-                  moduleName = "SWWebImageTests"
-                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImageTests/SDWebImageManagerTest.swift"
-                  timestampString = "430202786.103023"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "54">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SWWebImageTests.SDWebImageManagerTest.(testThatDownloadInvokesCompletionBlockWithCorrectParamsAsync (SWWebImageTests.SDWebImageManagerTest) -&gt; () -&gt; ()).(closure #1).(implicit closure #1)"
-                  moduleName = "SWWebImageTests"
-                  urlString = "file:///Users/goldratio/WorkspaceGroup/IOSWorkspace/SWWebImage/SWWebImageTests/SDWebImageManagerTest.swift"
-                  timestampString = "430202786.103277"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "12">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
