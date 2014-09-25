@@ -46,7 +46,7 @@ extension Dictionary {
 
 
 
-public class SWImageCache
+public class SWImageCache: NSObject
 {
     var maxMemoryCost: UInt = 0
     var maxCacheSize: UInt = 0
@@ -87,6 +87,7 @@ public class SWImageCache
         //        })
         let pngPrefix = UnsafePointer<UInt8>([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])
         kPNGSignatureData = NSData(bytes: pngPrefix, length: 8)
+        super.init()
         
         dispatch_sync(self.ioQueue) {
             self.fileManager = NSFileManager.defaultManager()
@@ -158,7 +159,8 @@ public class SWImageCache
                     let resourceKeys = [NSURLIsDirectoryKey, NSURLContentModificationDateKey, NSURLTotalFileAllocatedSizeKey]
                     let fileEnumerator = fileManager.enumeratorAtURL(diskCacheURL, includingPropertiesForKeys: resourceKeys,
                         options: NSDirectoryEnumerationOptions.SkipsHiddenFiles, errorHandler: nil)
-                    let expirationDate = NSDate(timeIntervalSinceNow: -self.maxCacheAge)
+                    let expirationDate = NSDate(timeIntervalSinceNow: self.maxCacheAge)
+                    
                     var cacheFiles = [NSURL: AnyObject]()
                     var currentCacheSize: UInt = 0
                     var urlsToDelete = [NSURL]()
@@ -171,6 +173,7 @@ public class SWImageCache
                                     continue
                                 }
                                 let modificationDate = resourceValues[NSURLContentModificationDateKey] as NSDate
+                                
                                 if modificationDate.laterDate(expirationDate).isEqualToDate(expirationDate) {
                                     urlsToDelete.append(fileURL)
                                     continue
