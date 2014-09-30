@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>4463E78A-EE8E-453B-8306-CCE01442A2C7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SWWebImage</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>177F260391A2EA275A2AC0B368879D40B4CC3A3E</key>
+		<string>https://github.com/mqshen/SWWebImage.git</string>
+		<key>289CA3A74AE0352CDF5EEF7A3EDEFC8A2ABFC674</key>
+		<string>bitbucket.org:mqshen/iwowo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SWWebImage.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>177F260391A2EA275A2AC0B368879D40B4CC3A3E</key>
+		<string>..</string>
+		<key>289CA3A74AE0352CDF5EEF7A3EDEFC8A2ABFC674</key>
+		<string>../../iwowo</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mqshen/SWWebImage.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>177F260391A2EA275A2AC0B368879D40B4CC3A3E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>289CA3A74AE0352CDF5EEF7A3EDEFC8A2ABFC674</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iwowo</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>177F260391A2EA275A2AC0B368879D40B4CC3A3E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SWWebImage</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -66,14 +66,14 @@ public func == (lhs: SWWebImageOptions, rhs: SWWebImageOptions) -> Bool     { re
 //    case TransformAnimatedImage = 1024
 //}
 
-class SWWebImageView : UIImageView
+public class SWWebImageView : UIImageView
 {
     var operations = Dictionary<String, SWWebImageOperation>()
     
     var url: NSURL?
     
     //func setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder
-    func setImage(url: NSURL, placeholderImage: UIImage, options: SWWebImageOptions = SWWebImageOptions.None, progress: SWWebImageDownloaderProgressHandler? = nil) {
+    public func setImage(url: NSURL, placeholderImage: UIImage, options: SWWebImageOptions = SWWebImageOptions.None, progress: SWWebImageDownloaderProgressHandler? = nil) {
         self.cancelCurrentImageLoad()
         self.url = url
         if !(options & SWWebImageOptions.DelayPlaceholder).boolValue {

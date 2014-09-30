@@ -451,7 +451,7 @@ protocol SWWebImageManagerDelegate
 
 public class SWWebImageManager
 {
-    let imageCache: SWImageCache
+    public let imageCache: SWImageCache
     let imageDownloader: SWWebImageDownloader
     var failedURLs: Array<NSURL>
     var runningOperations: Array<SWWebImageCombinedOperation>
@@ -471,6 +471,13 @@ public class SWWebImageManager
         runningOperations = [SWWebImageCombinedOperation]()
     }
     
+    public func getCacheSize() -> UInt {
+        return imageCache.getSize()
+    }
+    
+    public func cleanDiskWithCompletionBlock(completeHandler: (() -> Void)?) {
+        imageCache.cleanDiskWithCompletionBlock(completeHandler)
+    }
     
     public func downloadImage(url: NSURL,
         options: SWWebImageOptions,

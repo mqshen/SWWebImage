@@ -1,0 +1,413 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F1FFCE6819DA5165003068EB /* SWWebImage.h in Headers */ = {isa = PBXBuildFile; fileRef = F1FFCE6719DA5165003068EB /* SWWebImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1FFCE7219DA5165003068EB /* SWWebImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7119DA5165003068EB /* SWWebImageTests.swift */; };
+		F1FFCE8119DA518D003068EB /* SWWebImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7B19DA518D003068EB /* SWWebImageDownloader.swift */; };
+		F1FFCE8219DA518D003068EB /* SWWebImageDownloaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7C19DA518D003068EB /* SWWebImageDownloaderOperation.swift */; };
+		F1FFCE8319DA518D003068EB /* SWWebImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7D19DA518D003068EB /* SWWebImageManager.swift */; };
+		F1FFCE8419DA518D003068EB /* SWWebImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7E19DA518D003068EB /* SWWebImageUtil.swift */; };
+		F1FFCE8519DA518D003068EB /* SWWebImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE7F19DA518D003068EB /* SWWebImageView.swift */; };
+		F1FFCE8619DA518D003068EB /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FFCE8019DA518D003068EB /* util.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F1FFCE6219DA5165003068EB /* SWWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SWWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FFCE6619DA5165003068EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1FFCE6719DA5165003068EB /* SWWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWWebImage.h; sourceTree = "<group>"; };
+		F1FFCE6D19DA5165003068EB /* SWWebImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWWebImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FFCE7019DA5165003068EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1FFCE7119DA5165003068EB /* SWWebImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWebImageTests.swift; sourceTree = "<group>"; };
+		F1FFCE7B19DA518D003068EB /* SWWebImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageDownloader.swift; sourceTree = "<group>"; };
+		F1FFCE7C19DA518D003068EB /* SWWebImageDownloaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageDownloaderOperation.swift; sourceTree = "<group>"; };
+		F1FFCE7D19DA518D003068EB /* SWWebImageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageManager.swift; sourceTree = "<group>"; };
+		F1FFCE7E19DA518D003068EB /* SWWebImageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageUtil.swift; sourceTree = "<group>"; };
+		F1FFCE7F19DA518D003068EB /* SWWebImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWWebImageView.swift; sourceTree = "<group>"; };
+		F1FFCE8019DA518D003068EB /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F1FFCE5E19DA5165003068EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFCE6A19DA5165003068EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F1FFCE5819DA5165003068EB = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE6419DA5165003068EB /* SWWebImage */,
+				F1FFCE6E19DA5165003068EB /* SWWebImageTests */,
+				F1FFCE6319DA5165003068EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F1FFCE6319DA5165003068EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE6219DA5165003068EB /* SWWebImage.framework */,
+				F1FFCE6D19DA5165003068EB /* SWWebImageTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F1FFCE6419DA5165003068EB /* SWWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE7B19DA518D003068EB /* SWWebImageDownloader.swift */,
+				F1FFCE7C19DA518D003068EB /* SWWebImageDownloaderOperation.swift */,
+				F1FFCE7D19DA518D003068EB /* SWWebImageManager.swift */,
+				F1FFCE7E19DA518D003068EB /* SWWebImageUtil.swift */,
+				F1FFCE7F19DA518D003068EB /* SWWebImageView.swift */,
+				F1FFCE8019DA518D003068EB /* util.swift */,
+				F1FFCE6719DA5165003068EB /* SWWebImage.h */,
+				F1FFCE6519DA5165003068EB /* Supporting Files */,
+			);
+			path = SWWebImage;
+			sourceTree = "<group>";
+		};
+		F1FFCE6519DA5165003068EB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE6619DA5165003068EB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F1FFCE6E19DA5165003068EB /* SWWebImageTests */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE7119DA5165003068EB /* SWWebImageTests.swift */,
+				F1FFCE6F19DA5165003068EB /* Supporting Files */,
+			);
+			path = SWWebImageTests;
+			sourceTree = "<group>";
+		};
+		F1FFCE6F19DA5165003068EB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1FFCE7019DA5165003068EB /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F1FFCE5F19DA5165003068EB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFCE6819DA5165003068EB /* SWWebImage.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F1FFCE6119DA5165003068EB /* SWWebImage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FFCE7519DA5165003068EB /* Build configuration list for PBXNativeTarget "SWWebImage" */;
+			buildPhases = (
+				F1FFCE5D19DA5165003068EB /* Sources */,
+				F1FFCE5E19DA5165003068EB /* Frameworks */,
+				F1FFCE5F19DA5165003068EB /* Headers */,
+				F1FFCE6019DA5165003068EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SWWebImage;
+			productName = SWWebImage;
+			productReference = F1FFCE6219DA5165003068EB /* SWWebImage.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F1FFCE6C19DA5165003068EB /* SWWebImageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FFCE7819DA5165003068EB /* Build configuration list for PBXNativeTarget "SWWebImageTests" */;
+			buildPhases = (
+				F1FFCE6919DA5165003068EB /* Sources */,
+				F1FFCE6A19DA5165003068EB /* Frameworks */,
+				F1FFCE6B19DA5165003068EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SWWebImageTests;
+			productName = SWWebImageTests;
+			productReference = F1FFCE6D19DA5165003068EB /* SWWebImageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F1FFCE5919DA5165003068EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = GoldRatio;
+				TargetAttributes = {
+					F1FFCE6119DA5165003068EB = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					F1FFCE6C19DA5165003068EB = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+				};
+			};
+			buildConfigurationList = F1FFCE5C19DA5165003068EB /* Build configuration list for PBXProject "SWWebImage" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F1FFCE5819DA5165003068EB;
+			productRefGroup = F1FFCE6319DA5165003068EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F1FFCE6119DA5165003068EB /* SWWebImage */,
+				F1FFCE6C19DA5165003068EB /* SWWebImageTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F1FFCE6019DA5165003068EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFCE6B19DA5165003068EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F1FFCE5D19DA5165003068EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFCE8419DA518D003068EB /* SWWebImageUtil.swift in Sources */,
+				F1FFCE8519DA518D003068EB /* SWWebImageView.swift in Sources */,
+				F1FFCE8119DA518D003068EB /* SWWebImageDownloader.swift in Sources */,
+				F1FFCE8619DA518D003068EB /* util.swift in Sources */,
+				F1FFCE8319DA518D003068EB /* SWWebImageManager.swift in Sources */,
+				F1FFCE8219DA518D003068EB /* SWWebImageDownloaderOperation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FFCE6919DA5165003068EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FFCE7219DA5165003068EB /* SWWebImageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F1FFCE7319DA5165003068EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F1FFCE7419DA5165003068EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F1FFCE7619DA5165003068EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SWWebImage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F1FFCE7719DA5165003068EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = SWWebImage/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F1FFCE7919DA5165003068EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SWWebImageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F1FFCE7A19DA5165003068EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SWWebImageTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F1FFCE5C19DA5165003068EB /* Build configuration list for PBXProject "SWWebImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFCE7319DA5165003068EB /* Debug */,
+				F1FFCE7419DA5165003068EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1FFCE7519DA5165003068EB /* Build configuration list for PBXNativeTarget "SWWebImage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFCE7619DA5165003068EB /* Debug */,
+				F1FFCE7719DA5165003068EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F1FFCE7819DA5165003068EB /* Build configuration list for PBXNativeTarget "SWWebImageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FFCE7919DA5165003068EB /* Debug */,
+				F1FFCE7A19DA5165003068EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F1FFCE5919DA5165003068EB /* Project object */;
+}
